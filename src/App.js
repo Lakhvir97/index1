@@ -68,11 +68,7 @@ function App() {
                 <span>Address -</span>
                 {address}
               </li>
-              {/* <div class="Delete" id="Delete">
-                <span>
-                  <i class="material-icons">delete</i>
-                </span>
-              </div> */}
+          
             </div>
           );
         })}
