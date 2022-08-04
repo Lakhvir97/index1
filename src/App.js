@@ -1,24 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [address, setAddress] = useState("");
+
+  const [entry, setEntry] = useState([]);
+
+  const Submit = (e) => {
+    e.preventDefault();
+    const newEntry = { name: name, age: age, address: address };
+
+    setEntry([...entry, newEntry]);
+    setName("");
+    setAge("");
+    setAddress("");
+    // console.log(entry);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <form className="App" onSubmit={Submit}>
+        <span>Name</span>
+        <input
+          type="text"
+          autoComplete="off"
+          name="name"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+        />
+        <span>Age</span>
+        <input
+          name="age"
+          autoComplete="off"
+          onChange={(e) => setAge(e.target.value)}
+          value={age}
+        />
+        <span>Address</span>
+        <input
+          type="Text"
+          autoComplete="off"
+          name="address"
+          onChange={(e) => setAddress(e.target.value)}
+          value={address}
+        />
+        <button>Submit</button>
+      </form>
+
+      <div class="Main-div">
+        {entry.map((cur) => {
+          const { name, age, address } = cur;
+
+          return (
+            <div class="List">
+              <li>
+                <span>Name -</span>
+                {name}
+              </li>
+
+              <li>
+                <span>Age -</span>
+                {age}
+              </li>
+
+              <li>
+                <span>Address -</span>
+                {address}
+              </li>
+              {/* <div class="Delete" id="Delete">
+                <span>
+                  <i class="material-icons">delete</i>
+                </span>
+              </div> */}
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 
